@@ -1,0 +1,81 @@
+#pragma version 4
+
+// Pseudo code for understanding the structure, TEAL does not support strings or complex data structures directly
+
+// Global state 
+// Gtxn[0] - Represents the land parcel transaction
+// Gtxn[1] - Represents the owner update transaction
+
+// Check if the application is being created
+// If so, skip to initialization
+int 0
+txn ApplicationID
+==
+bz initialization
+
+// Handle each allowed OnCompletion type separately
+txn OnCompletion
+int NoOp
+==
+bnz handle_noop
+
+txn OnCompletion
+int OptIn
+==
+bnz handle_optin
+
+txn OnCompletion
+int CloseOut
+==
+bnz handle_closeout
+
+txn OnCompletion
+int UpdateApplication
+==
+bnz handle_updateapp
+
+txn OnCompletion
+int DeleteApplication
+==
+bnz handle_deleteapp
+
+// Unexpected OnCompletion value. Should be unreachable.
+err
+
+// Initialization branch
+initialization:
+
+// Set owner to creator
+byte "owner"
+txn Sender
+app_global_put
+
+// Initialize land
+byte "land"
+int 0
+app_global_put
+
+int 1
+return
+
+// handle_noop branch
+handle_noop:
+
+// Check if the sender is the current owner
+byte "owner"
+app_global_get
+txn Sender
+==
+bz not_owner
+
+// Update land info in global state
+byte "land"
+Gtxn[0] // represents the new land info
+app_global_put
+
+int 1
+return
+
+not_owner:
+
+err
