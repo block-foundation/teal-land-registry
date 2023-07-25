@@ -1,5 +1,6 @@
 <div align="right">
 
+  [![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/block-foundation/teal-land-registry)
   [![license](https://img.shields.io/github/license/block-foundation/teal-land-registry?color=green&label=license&style=flat-square)](LICENSE.md)
   ![stars](https://img.shields.io/github/stars/block-foundation/teal-land-registry?color=blue&label=stars&style=flat-square)
   ![contributors](https://img.shields.io/github/contributors/block-foundation/teal-land-registry?color=blue&label=contributors&style=flat-square)
@@ -9,7 +10,7 @@
 ---
 
 <div>
-    <img align="right" src="https://raw.githubusercontent.com/block-foundation/brand/master/logo/logo_gray.png" width="96" alt="Block Foundation Logo">
+    <img align="right" src="https://raw.githubusercontent.com/block-foundation/brand/master/src/logo/logo_gray.png" width="96" alt="Block Foundation Logo">
     <h1 align="left">Decentralized Land Registry</h1>
     <h3 align="left">Block Foundation Smart Contract Series [Teal]</h3>
 </div>
@@ -17,7 +18,7 @@
 ---
 
 <div>
-<img align="right" width="75%" src="https://raw.githubusercontent.com/block-foundation/brand/master/image/repository_cover/block_foundation-structure-03-accent.jpg"  alt="Block Foundation">
+<img align="right" width="75%" src="https://raw.githubusercontent.com/block-foundation/brand/master/src/image/repository_cover/block_foundation-structure-03-accent.jpg"  alt="Block Foundation">
 <br>
 <details open="open">
 <summary>Table of Contents</summary>
