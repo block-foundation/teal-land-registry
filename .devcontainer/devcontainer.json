@@ -1,8 +1,27 @@
 {
-    "name": "latex-env",
+    "name": "dev-env",
     "extensions": [
-        "james-yu.latex-workshop"
     ],
-    "dockerFile": "Dockerfile"
-
-} 
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "remoteUser": "nonroot",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ],
+            "settings": {
+                "python.testing.pytestArgs": [
+                    "."
+                ],
+                "python.testing.unittestEnabled": false,
+                "python.testing.pytestEnabled": true,
+                "python.formatting.provider": "black",
+                "python.linting.mypyEnabled": true,
+                "python.linting.enabled": true
+            }
+        }
+    }
+}
