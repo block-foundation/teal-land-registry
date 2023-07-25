@@ -1,9 +1,7 @@
 FROM ubuntu:22.04
 
-# non interactive frontend for locales
 ENV DEBIAN_FRONTEND=noninteractive
 
-# installing texlive and utils
 RUN \
     apt-get update && \
     apt-get -y install \
@@ -12,29 +10,28 @@ RUN \
         curl \
         make \
         git \
-        texlive \
-        texlive-latex-extra \
-        texlive-latex-recommended \
-        texlive-bibtex-extra \
-        texlive-extra-utils \
-        texlive-fonts-extra \
-        pandoc \
-        biber \
-        latexmk \
-        procps \
+        python3-dev \
+        python3-pip \
+        python3-venv \
+        python3-wheel \
     && \
     rm -rf /var/lib/apt/lists/*
 
-# generating locales
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
 
-ENV \
-    LANGUAGE=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
-    LC_ALL=en_US.UTF-8
+# Add non-root user
+ARG USERNAME=nonroot
+RUN groupadd --gid 1000 $USERNAME && \
+    useradd --uid 1000 --gid 1000 -m $USERNAME
 
-# installing cpanm & missing latexindent dependencies
-RUN curl -L http://cpanmin.us | perl - --self-upgrade && \
-    cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
+## Make sure to reflect new user in PATH
+ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
+USER $USERNAME
+
+
+
+RUN pip install --upgrade pip
+
+
+COPY --chown=nonroot:1000 requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt && \
+    rm /tmp/requirements.txt
