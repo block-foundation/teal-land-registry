@@ -24,4 +24,4 @@ regex==2021.11.10
 six==1.16.0
 toml==0.10.2
 tomli==1.2.2
-typing_extensions==4.0.1
+typing_extensions==4.12.2
